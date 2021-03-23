@@ -1,0 +1,54 @@
+import com.fate.buildsrc.Versions
+import com.fate.buildsrc.Libs
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+
+    defaultConfig {
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+        useIR = true
+    }
+//    buildFeatures {
+//        compose true
+//    }
+//    composeOptions {
+//        kotlinCompilerExtensionVersion Libs.Androidx.Compose.version
+//        kotlinCompilerVersion Libs.Kotlin.version
+//    }
+}
+
+dependencies {
+    implementation Libs.Dagger.hilt
+    kapt Libs.Dagger.Apt.hilt
+    implementation Libs.Coroutines.coroutines
+    implementation Libs.Androidx.material
+    implementation Libs.Androidx.Lifecycle.runtime
+    implementation Libs.Androidx.Lifecycle.livedata
+    implementation Libs.Androidx.Lifecycle.common_java8
+    implementation Libs.Androidx.DataStore.data_store_core
+    implementation Libs.Androidx.Navigation.fragment
+    implementation Libs.Androidx.KTX.fragment
+    implementation Libs.Log.timber
+    testImplementation com.fate.buildsrc.Test.junit
+    androidTestImplementation com.fate.buildsrc.Test.espressoCore
+    androidTestImplementation com.fate.buildsrc.Test.Ext.junit
+}
